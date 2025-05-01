@@ -12,7 +12,7 @@ class Command(BaseCommand):
             
             # Create new admin user
             admin = User.objects.create_superuser(
-                username='admin',
+                username='postgres',
                 email='admin@example.com',
                 password='Admin@123'
             )
