@@ -12,7 +12,7 @@ class Command(BaseCommand):
             User.objects.filter(username='admin').delete()
             
             # Set default admin credentials
-            username = 'admin'
+            username = 'postgres'
             email = 'admin@example.com'
             password = 'Admin@123'
 
