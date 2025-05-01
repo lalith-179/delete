@@ -1,0 +1,338 @@
+{% extends 'acc_base.html' %}
+
+{% load static %}
+{% load utils %}
+{% load crispy_forms_tags %}
+
+
+<!-- Header -->
+{% block title %}
+<title>User login</title>
+{% endblock %}
+
+
+{% block content %}
+<style>
+    .login-container {
+        display: flex;
+        min-height: 100vh;
+        background: linear-gradient(45deg, #1a365d 0%, #2d4a8c 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Animated background elements */
+    .login-container::before,
+    .login-container::after {
+        content: '';
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        filter: blur(100px);
+        opacity: 0.15;
+        animation: float 15s infinite ease-in-out;
+    }
+
+    .login-container::before {
+        top: -250px;
+        left: -250px;
+    }
+
+    .login-container::after {
+        bottom: -250px;
+        right: -250px;
+        animation-delay: -7.5s;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translate(0, 0); }
+        50% { transform: translate(50px, 50px); }
+    }
+
+    .image-section {
+        flex: 1.2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .image-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        border-radius: 0 30px 30px 0;
+    }
+
+    .image-section img {
+        max-width: 90%;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        transform: perspective(1000px) rotateY(-5deg);
+        transition: transform 0.5s ease;
+        position: relative;
+        z-index: 1;
+    }
+
+    .image-section img:hover {
+        transform: perspective(1000px) rotateY(0deg) translateZ(20px);
+    }
+
+    .form-section {
+        flex: 0.8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem;
+    }
+
+    .login-card {
+        background: rgba(255, 255, 255, 0.98);
+        padding: 3rem;
+        border-radius: 24px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 420px;
+        transform: translateY(0);
+        transition: all 0.3s ease;
+    }
+
+    .login-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .login-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .login-header i {
+        font-size: 3rem;
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1.5rem;
+        display: inline-block;
+    }
+
+    .login-header h2 {
+        color: #1e293b;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        letter-spacing: -0.5px;
+    }
+
+    .login-header p {
+        color: #64748b;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .form-group {
+        margin-bottom: 1.75rem;
+        position: relative;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.75rem;
+        color: #1e293b;
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 1rem 1.25rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: #f8fafc;
+        color: #1e293b;
+    }
+
+    .form-control:focus {
+        border-color: #f59e0b;
+        box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1);
+        outline: none;
+        background: #fff;
+    }
+
+    .form-control::placeholder {
+        color: #94a3b8;
+    }
+
+    .btn-login {
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-login::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: 0.5s;
+    }
+
+    .btn-login:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(217, 119, 6, 0.3);
+    }
+
+    .btn-login:hover::before {
+        left: 100%;
+    }
+
+    .alert {
+        padding: 1rem 1.25rem;
+        margin-bottom: 1.5rem;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .alert-danger {
+        background-color: #fef2f2;
+        color: #dc2626;
+        border: 1px solid #fee2e2;
+    }
+
+    .alert-danger::before {
+        content: '⚠️';
+    }
+
+    .signup-link {
+        text-align: center;
+        margin-top: 1.5rem;
+        color: #64748b;
+        font-size: 0.95rem;
+    }
+
+    .signup-link a {
+        color: #f59e0b;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .signup-link a:hover {
+        color: #d97706;
+        text-decoration: underline;
+    }
+
+    @media (max-width: 1024px) {
+        .image-section {
+            flex: 1;
+        }
+        .form-section {
+            flex: 1;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .login-container {
+            flex-direction: column;
+        }
+        
+        .image-section {
+            padding: 2rem;
+            min-height: 300px;
+        }
+        
+        .image-section::before {
+            border-radius: 0 0 30px 30px;
+        }
+        
+        .form-section {
+            padding: 2rem;
+        }
+        
+        .login-card {
+            padding: 2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .image-section {
+            display: none;
+        }
+        
+        .form-section {
+            padding: 1.5rem;
+        }
+        
+        .login-card {
+            padding: 1.5rem;
+        }
+    }
+</style>
+
+<div class="login-container">
+    <div class="image-section">
+        <img src="https://cdni.iconscout.com/illustration/premium/thumb/people-watching-movie-in-theater-4991881-4159599.png" alt="Movie Theater Illustration">
+    </div>
+    <div class="form-section">
+        <div class="login-card">
+            <div class="login-header">
+                <i class="fas fa-user"></i>
+                <h2>Welcome Back!</h2>
+                <p>Sign in to book your favorite movies</p>
+            </div>
+            
+            {% if msg %}
+            <div class="alert alert-danger">
+                {{ msg }}
+            </div>
+            {% endif %}
+            
+            <form method="post">
+        {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn-login">Sign In</button>
+            </form>
+            
+            <div class="signup-link">
+                Don't have an account? <a href="/accounts/usersignup">Sign up here</a>
+            </div>
+        </div>
+  </div>
+</div>
+{% endblock %}
+
+

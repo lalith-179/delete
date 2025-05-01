@@ -1,0 +1,46 @@
+{
+    "movies": [
+        {
+            "name": "The Dark Knight",
+            "genre": "Action, Crime, Drama",
+            "language": "English",
+            "year": 2008,
+            "plot": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+            "url": "https://example.com/dark-knight.jpg"
+        },
+        {
+            "name": "Inception",
+            "genre": "Action, Adventure, Sci-Fi",
+            "language": "English",
+            "year": 2010,
+            "plot": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+            "url": "https://example.com/inception.jpg"
+        }
+    ],
+    "banners": [
+        {
+            "movie_name": "The Dark Knight",
+            "url": "https://example.com/dark-knight-banner.jpg"
+        },
+        {
+            "movie_name": "Inception",
+            "url": "https://example.com/inception-banner.jpg"
+        }
+    ],
+    "shows": [
+        {
+            "movie_name": "The Dark Knight",
+            "showtime": "14:00",
+            "start_date": "2024-05-01",
+            "end_date": "2024-05-15",
+            "price": 250
+        },
+        {
+            "movie_name": "Inception",
+            "showtime": "18:00",
+            "start_date": "2024-05-01",
+            "end_date": "2024-05-15",
+            "price": 300
+        }
+    ]
+} 

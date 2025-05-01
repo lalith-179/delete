@@ -1,0 +1,81 @@
+Loading environment variables for .env file
+[
+{
+    "model": "staff.film",
+    "pk": 1,
+    "fields": {
+        "movie_name": "Havoc",
+        "movie_genre": "Action Thriller",
+        "movie_lang": "English",
+        "movie_year": 2025,
+        "movie_plot": "Tom Hardy stars as Walker, a tormented homicide detective entangled in a drug heist gone wrong involving his boss’s estranged son. As factions of gangsters, Triads, and corrupt officials clash, Walker battles through relentless violence to find Charlie and redeem himself.",
+        "url": "https://resizing.flixster.com/2bkyVmLlw_8s0SzA8C1gaYNdoZY=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzJlNTkwNTIxLTM0YmYtNDgzNi1hZGFlLThjODM2ZTA5OTEzMi5qcGc=",
+        "date_added": "2025-04-26"
+    }
+},
+{
+    "model": "staff.film",
+    "pk": 2,
+    "fields": {
+        "movie_name": "Civil War",
+        "movie_genre": "Action Drama",
+        "movie_lang": "English",
+        "movie_year": 2024,
+        "movie_plot": "In a fractured near-future America, a team of elite journalists races to Washington D.C. during the country's collapse.\r\nCaught between militia forces, deadly urban warfare, and shifting alliances, their mission could change history.",
+        "url": "https://m.media-amazon.com/images/M/MV5BYTkzMjc0YzgtY2E0Yi00NDBlLWI0MWUtODY1ZjExMDAyOWZiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+        "date_added": "2025-04-26"
+    }
+},
+{
+    "model": "staff.film",
+    "pk": 3,
+    "fields": {
+        "movie_name": "Furiosa: A Mad Max Saga",
+        "movie_genre": "Action Adventure",
+        "movie_lang": "English",
+        "movie_year": 2025,
+        "movie_plot": "Anya Taylor-Joy stars as Furiosa, stolen from her family and forced to survive in the brutal Wasteland.\r\nFacing terrifying warlords like Dementus, her fight for freedom leads to the rise of a legend",
+        "url": "https://m.media-amazon.com/images/S/pv-target-images/dd180c5de20a3968fac356818175ff4cca37447c53a3f81db3ae78757b20abcf.jpg",
+        "date_added": "2025-04-26"
+    }
+},
+{
+    "model": "staff.film",
+    "pk": 4,
+    "fields": {
+        "movie_name": "Kingdom of the Planet of the Apes",
+        "movie_genre": "Sci-Fi Action",
+        "movie_lang": "English",
+        "movie_year": 2023,
+        "movie_plot": "Centuries after Caesar’s legacy, apes have risen while humanity struggles to survive.\r\nA young ape sets off on a dangerous journey, discovering secrets that could reshape their entire world.",
+        "url": "https://m.media-amazon.com/images/S/pv-target-images/945441437c34ba93d21a08a69f511a52bd0b1c749ad2cada5de1e8135c3700ca.jpg",
+        "date_added": "2025-04-26"
+    }
+},
+{
+    "model": "staff.film",
+    "pk": 5,
+    "fields": {
+        "movie_name": "The Fall Guy",
+        "movie_genre": "Sci-Fi Action",
+        "movie_lang": "English",
+        "movie_year": 2022,
+        "movie_plot": "Ryan Gosling plays Colt Seavers, a stuntman pulled into a dangerous mystery when a major star vanishes.\r\nWith thrilling chases, stunts, and wild humor, it’s a love letter to Hollywood’s unsung heroes.",
+        "url": "https://i0.wp.com/cinemascholars.com/wp-content/uploads/2024/05/The-Fall-Guy-movie-poster.jpg?fit=810%2C1283&ssl=1",
+        "date_added": "2025-04-26"
+    }
+},
+{
+    "model": "staff.film",
+    "pk": 6,
+    "fields": {
+        "movie_name": "Deadpool & Wolverine",
+        "movie_genre": "Action Comedy | Superhero",
+        "movie_lang": "English",
+        "movie_year": 2024,
+        "movie_plot": "Deadpool (Ryan Reynolds) accidentally breaks the multiverse — and Wolverine (Hugh Jackman) reluctantly joins him.\r\nExpect insane action, fourth-wall chaos, R-rated humor, and the return of fan-favorite characters.",
+        "url": "https://m.media-amazon.com/images/S/pv-target-images/dd6fb66997dd4cb5606b587bb255d2cd2cec20ecbd11852a8f6b07a1358d09a1.jpg",
+        "date_added": "2025-04-26"
+    }
+}
+]

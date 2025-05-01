@@ -1,0 +1,74 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% load utils %}
+
+{% block title %}
+    <title> Shows - Admin </title>
+{% endblock %}
+
+
+
+{% block content %}
+
+<h1 class="mt-4">Shows</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+    <li class="breadcrumb-item active">Shows</li>
+    <li class="breadcrumb-item"><a href="/admin/createshow">Add Show</a></li>
+</ol>
+
+<div class="card mb-4">
+  <div class="card-header">
+      <i class="fas fa-table me-1"></i>
+      List of Shows 
+      
+
+      <a class="btn btn-outline-primary"  href="/admin/createshow" align="right">Add Show</a>
+  </div>
+  <div class="card-body">
+      <table id="datatablesSimple">
+          <thead>
+              <tr>
+                  <th>Movie</th>
+                  <th>Showtime</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Price</th>
+                  <th>thumbnail</th>
+                  <th>Actions</th>
+              </tr>
+          </thead>
+          <tfoot>
+              <tr>
+                  <th>Movie</th>
+                  <th>Showtime</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Price</th>
+                  <th>thumbnail</th>
+                  <th>Actions</th>
+              </tr>
+          </tfoot>
+          <tbody>
+
+            {% for show in shows %}
+                <tr>
+                  <td >{{ show.movie }}</td>
+                  <td >{{ show.showtime }}</td>
+                  <td >{{ show.start_date }}</td>
+                  <td >{{ show.end_date }}</td>
+                  <td>{{ show.price }}</td>
+                  <td ><img src="{{ show.movie.url }}"  style="height:50px;width:40px;"></td>
+                  <td>
+                      <a class="btn btn-warning" href="/admin/updateshow/{{ show.id }}">Edit</a>
+                      <a class="btn btn-danger" href="/admin/deleteshow/{{ show.id }}" >Delete</a>
+                  </td>
+                </tr>
+            {% endfor %}
+          </tbody>
+      </table>
+  </div>
+</div>
+
+
+{% endblock %}

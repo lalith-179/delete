@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Complete Your Payment</h3>
+                </div>
+                <div class="card-body">
+                    <div id="payment-error" class="alert alert-danger d-none"></div>
+                    <form id="payment-form" action="{{ callback_url }}" method="POST">
+                        {% csrf_token %}
+                        <script
+                            src="https://checkout.razorpay.com/v1/checkout.js"
+                            data-key="{{ key_id }}"
+                            data-amount="{{ amount }}"
+                            data-currency="{{ currency }}"
+                            data-order_id="{{ order_id }}"
+                            data-buttontext="Pay Now"
+                            data-name="BookMyTicket"
+                            data-description="Movie Ticket Payment"
+                            data-image="{% static 'images/logo.png' %}"
+                            data-prefill.name="{{ user.get_full_name }}"
+                            data-prefill.email="{{ user.email }}"
+                            data-theme.color="#F37254"
+                            data-callback_url="{{ callback_url }}"
+                        ></script>
+                        <input type="hidden" name="razorpay_payment_id" id="razorpay_payment_id">
+                        <input type="hidden" name="razorpay_order_id" id="razorpay_order_id">
+                        <input type="hidden" name="razorpay_signature" id="razorpay_signature">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var options = {
+        "key": "{{ key_id }}",
+        "amount": "{{ amount }}",
+        "currency": "{{ currency }}",
+        "order_id": "{{ order_id }}",
+        "name": "BookMyTicket",
+        "description": "Movie Ticket Payment",
+        "image": "{% static 'images/logo.png' %}",
+        "prefill": {
+            "name": "{{ user.get_full_name }}",
+            "email": "{{ user.email }}"
+        },
+        "theme": {
+            "color": "#F37254"
+        },
+        "handler": function(response) {
+            console.log("Payment successful:", response);
+            document.getElementById('razorpay_payment_id').value = response.razorpay_payment_id;
+            document.getElementById('razorpay_order_id').value = response.razorpay_order_id;
+            document.getElementById('razorpay_signature').value = response.razorpay_signature;
+            document.getElementById('payment-form').submit();
+        },
+        "modal": {
+            "ondismiss": function() {
+                console.log("Payment cancelled");
+                document.getElementById('payment-error').classList.remove('d-none');
+                document.getElementById('payment-error').textContent = 'Payment was cancelled. Please try again.';
+            }
+        }
+    };
+    
+    var rzp = new Razorpay(options);
+    
+    rzp.on('payment.failed', function(response) {
+        console.error("Payment failed:", response);
+        document.getElementById('payment-error').classList.remove('d-none');
+        document.getElementById('payment-error').textContent = 'Payment failed. Please try again.';
+    });
+    
+    document.querySelector('.razorpay-payment-button').onclick = function(e) {
+        e.preventDefault();
+        rzp.open();
+    };
+});
+</script>
+{% endblock %} 

@@ -1,0 +1,39 @@
+Loading environment variables for .env file
+[
+{
+    "model": "accounts.account",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$NNRdrA74lrb7atrsIKIt6G$Z3RW4gXkACXtL3TyvE2QXpAWea2auf5CMcamSoNLPso=",
+        "last_login": "2025-04-26T09:56:16.936Z",
+        "is_superuser": true,
+        "username": "postgres",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-04-26T04:31:38.920Z",
+        "email": "mangalalalitendra@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.account",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$x2F1jGoasS9GXK5NTlLkR0$B+OGUsyTLdctKxnhAPRLEhaqjZesRp238VNG/k26HrM=",
+        "last_login": "2025-04-26T18:53:10.585Z",
+        "is_superuser": false,
+        "username": "ysk",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-04-26T07:51:11.526Z",
+        "email": "ysk081220@gmail.com",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]

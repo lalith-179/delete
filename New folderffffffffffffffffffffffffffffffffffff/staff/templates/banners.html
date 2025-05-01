@@ -1,0 +1,67 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% load utils %}
+
+{% block title %}
+<title> Banners - Admin </title>
+{% endblock %}
+
+
+
+{% block content %}
+
+<h1 class="mt-4">Banners</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+    <li class="breadcrumb-item active">Banners</li>
+    <li class="breadcrumb-item"><a href="/admin/addbanner">Add Banner</a></li>
+</ol>
+
+<div class="card mb-4">
+  <div class="card-header">
+      <i class="fas fa-table me-1"></i>
+      List of Banners
+      
+      <a class="btn btn-outline-primary" href="/admin/addbanner" align="right">Add Banner</a>
+  </div>
+  <div class="card-body">
+      <table id="datatablesSimple">
+          <thead>
+              <tr>
+                  <th>Movie</th>
+                  <th>Banner</th>
+                  <th>Updated</th>
+                  <th>Actions</th>
+              </tr>
+          </thead>
+          <tfoot>
+              <tr>
+                  <th>Movie</th>
+                  <th>Banner</th>
+                  <th>Updated</th>
+                  <th>Actions</th>
+              </tr>
+          </tfoot>
+          <tbody>
+
+            {% for banner in banners %}
+                <tr>
+                  <td>{{ banner.movie__movie_name }}</td>
+                  <td style="padding:5px" ><img src="{{ banner.url }}"  style="height:50px;width:150px;"></td>
+                  <td>{{ banner.modified|tdiff }}</td>
+                  <td>
+                      <a class="btn btn-primary" href="/" target="_blank" >Preview</a>
+                      <a class="btn btn-warning" href="/admin/editbanner/{{ banner.id }}">Edit</a>
+                      {% comment %} <a href="#">delete</a> {% endcomment %}
+                      <!-- Button trigger modal -->
+                      <a class="btn btn-danger" data-id="{{ banner.id }}" href="/admin/deletebanner/{{ banner.id }}">Delete</a>
+                  </td>
+                </tr>
+            {% endfor %}
+          </tbody>
+      </table>
+  </div>
+</div>
+
+
+{% endblock %}
